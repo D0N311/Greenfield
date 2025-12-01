@@ -1,16 +1,111 @@
-# React + Vite
+# 🏠 Greenfield HOA Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, full-featured Homeowners Association (HOA) management system built with React, Vite, and Supabase.
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Member Management**: Add, edit, and manage HOA members
+- **Lot Payments**: Track property payments and payment history
+- **Contributions**: Handle various HOA contributions and fees
+- **Penalties**: Manage violations and penalty enforcement
+- **Dashboard**: Comprehensive overview with statistics
+- **Responsive Design**: Works on desktop, tablet, and mobile devices
 
-## React Compiler
+## 🚀 Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Frontend**: React 19, Vite, TailwindCSS
+- **Backend**: Supabase (PostgreSQL, Authentication, Real-time)
+- **Icons**: Lucide React
+- **Routing**: React Router
+- **State Management**: Zustand
 
-## Expanding the ESLint configuration
+## 📦 Installation
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/D0N311/Greenfield.git
+   cd Greenfield
+   ```
+
+2. **Install dependencies**
+
+   ```bash
+   npm install
+   ```
+
+3. **Set up environment variables**
+
+   ```bash
+   cp .env.example .env
+   ```
+
+   Edit `.env` and add your Supabase credentials:
+
+   ```env
+   VITE_SUPABASE_URL=your_supabase_project_url
+   VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+   ```
+
+4. **Run the development server**
+
+   ```bash
+   npm run dev
+   ```
+
+5. **Open your browser**
+   Navigate to `http://localhost:5173`
+
+## 🌐 Deployment
+
+### Netlify (Recommended)
+
+1. Push your code to GitHub
+2. Connect your repository to Netlify
+3. Set build command: `npm run build`
+4. Set publish directory: `dist`
+5. Add environment variables in Netlify dashboard
+
+### Vercel
+
+1. Push your code to GitHub
+2. Import project in Vercel
+3. Add environment variables
+4. Deploy automatically
+
+### GitHub Pages
+
+1. Enable GitHub Pages in repository settings
+2. Add secrets for environment variables
+3. Push to main branch to trigger deployment
+
+## 🔧 Environment Variables
+
+| Variable                 | Description                 | Required |
+| ------------------------ | --------------------------- | -------- |
+| `VITE_SUPABASE_URL`      | Your Supabase project URL   | Yes      |
+| `VITE_SUPABASE_ANON_KEY` | Your Supabase anonymous key | Yes      |
+
+## 🏗️ Project Structure
+
+```
+src/
+├── components/          # Reusable UI components
+├── hooks/              # Custom React hooks
+├── lib/                # Utility libraries (Supabase config)
+├── pages/              # Page components
+├── stores/             # State management
+└── assets/             # Static assets
+```
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Open a Pull Request
