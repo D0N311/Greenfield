@@ -353,13 +353,13 @@ function DeletedMembers() {
                           >
                             <RotateCcw className="h-4 w-4" />
                           </button>
-                          <button
+                          {/* <button
                             onClick={() => handlePermanentDelete(member)}
                             className="p-1.5 text-red-600 hover:bg-red-100 rounded transition-colors"
                             title="Delete Permanently"
                           >
                             <Trash2 className="h-4 w-4" />
-                          </button>
+                          </button> */}
                         </div>
                       </td>
                     </tr>

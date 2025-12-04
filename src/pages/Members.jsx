@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import {
   Users,
   Upload,
@@ -13,15 +13,18 @@ import {
   ChevronLeft,
   ChevronRight,
   Trash,
+  User,
 } from "lucide-react";
 import Papa from "papaparse";
 import { supabase } from "../lib/supabase";
 import Modal from "../components/Modal";
 import Statistics from "../components/Statistics";
+import { useAuth } from "../hooks/useAuth";
 import ConfirmationModal from "../components/ConfirmationModal";
 
 function Members() {
   const navigate = useNavigate();
+  const { role } = useAuth();
   const [totalMembers, setTotalMembers] = useState(0);
   const [activeMembers, setActiveMembers] = useState(0);
   const [isImporting, setIsImporting] = useState(false);
@@ -685,6 +688,15 @@ function Members() {
                       </td>
                       <td className="p-3">
                         <div className="flex gap-2">
+                          <Link
+                            to={`/members/${member.id}/profile`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="p-1.5 text-green-600 hover:bg-green-100 rounded transition-colors"
+                            title="View Profile (Opens in new tab)"
+                          >
+                            <User className="h-4 w-4" />
+                          </Link>
                           <button
                             onClick={() => handleEditMember(member)}
                             className="p-1.5 text-blue-600 hover:bg-blue-100 rounded transition-colors"
@@ -692,13 +704,15 @@ function Members() {
                           >
                             <Edit className="h-4 w-4" />
                           </button>
-                          <button
-                            onClick={() => handleDeleteMember(member)}
-                            className="p-1.5 text-red-600 hover:bg-red-100 rounded transition-colors"
-                            title="Delete"
-                          >
-                            <Trash2 className="h-4 w-4" />
-                          </button>
+                          {role === "Admin" && (
+                            <button
+                              onClick={() => handleDeleteMember(member)}
+                              className="p-1.5 text-red-600 hover:bg-red-100 rounded transition-colors"
+                              title="Delete"
+                            >
+                              <Trash2 className="h-4 w-4" />
+                            </button>
+                          )}
                         </div>
                       </td>
                     </tr>

@@ -17,8 +17,11 @@ import { supabase } from "../lib/supabase";
 import Modal from "../components/Modal";
 import Statistics from "../components/Statistics";
 import ConfirmationModal from "../components/ConfirmationModal";
+import { useAuth } from "../hooks/useAuth";
 
 function Lots() {
+  const { role } = useAuth();
+
   // State management
   const [lots, setLots] = useState([]);
   const [members, setMembers] = useState([]);
@@ -592,13 +595,15 @@ function Lots() {
                           >
                             <Edit className="h-4 w-4" />
                           </button>
-                          <button
-                            onClick={() => handleDeleteLot(lot)}
-                            className="p-1.5 text-red-600 hover:bg-red-100 rounded transition-colors"
-                            title="Delete"
-                          >
-                            <Trash2 className="h-4 w-4" />
-                          </button>
+                          {role === "Admin" && (
+                            <button
+                              onClick={() => handleDeleteLot(lot)}
+                              className="p-1.5 text-red-600 hover:bg-red-100 rounded transition-colors"
+                              title="Delete"
+                            >
+                              <Trash2 className="h-4 w-4" />
+                            </button>
+                          )}
                         </div>
                       </td>
                     </tr>

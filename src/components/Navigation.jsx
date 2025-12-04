@@ -5,7 +5,7 @@ function Navigation() {
   const location = useLocation();
   const navigate = useNavigate();
   const isHome = location.pathname === "/";
-  const { user, signOut } = useAuth();
+  const { user, authorized, loading, signOut } = useAuth();
 
   const handleSignOut = async () => {
     await signOut();
@@ -69,7 +69,7 @@ function Navigation() {
             >
               Services
             </Link>
-            {user && (
+            {user && !loading && authorized && (
               <Link
                 to="/dashboard"
                 className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-medium transition-all ${

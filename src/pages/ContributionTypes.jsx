@@ -17,9 +17,11 @@ import {
 import { supabase } from "../lib/supabase";
 import Modal from "../components/Modal";
 import ConfirmationModal from "../components/ConfirmationModal";
+import { useAuth } from "../hooks/useAuth";
 
 function ContributionTypes() {
   const navigate = useNavigate();
+  const { role } = useAuth();
 
   // State management
   const [contributionTypes, setContributionTypes] = useState([]);
@@ -487,13 +489,15 @@ function ContributionTypes() {
                           >
                             <Edit className="h-4 w-4" />
                           </button>
-                          <button
-                            onClick={() => handleDeleteType(type)}
-                            className="p-1.5 text-red-600 hover:bg-red-100 rounded transition-colors"
-                            title="Delete"
-                          >
-                            <Trash2 className="h-4 w-4" />
-                          </button>
+                          {role === "Admin" && (
+                            <button
+                              onClick={() => handleDeleteType(type)}
+                              className="p-1.5 text-red-600 hover:bg-red-100 rounded transition-colors"
+                              title="Delete"
+                            >
+                              <Trash2 className="h-4 w-4" />
+                            </button>
+                          )}
                         </div>
                       </td>
                     </tr>

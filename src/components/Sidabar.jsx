@@ -11,12 +11,15 @@ import {
   AlertTriangle,
   ChevronLeft,
   ChevronRight,
+  Shield,
 } from "lucide-react";
+import { useAuth } from "../hooks/useAuth";
 
 function Sidebar({ isCollapsed, setIsCollapsed }) {
   const location = useLocation();
+  const { role: userRole } = useAuth();
 
-  const menuItems = [
+  const allMenuItems = [
     {
       name: "Lot Payments",
       path: "/dashboard/lot-payments",
@@ -52,7 +55,21 @@ function Sidebar({ isCollapsed, setIsCollapsed }) {
       path: "/dashboard/deleted-members",
       icon: UserX,
     },
+    {
+      name: "User Authorization",
+      path: "/dashboard/authorize",
+      icon: Shield,
+      adminOnly: true, // This menu item is only for Admin users
+    },
   ];
+
+  // Filter menu items based on user role
+  const menuItems = allMenuItems.filter((item) => {
+    if (item.adminOnly) {
+      return userRole === "Admin";
+    }
+    return true;
+  });
 
   return (
     <>

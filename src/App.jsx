@@ -6,6 +6,9 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Dashboard from "./pages/Dashboard";
 import LotPaymentHistory from "./pages/LotPaymentHistory";
+import MemberProfile from "./pages/MemberProfile";
+import YourLost from "./pages/YourLost";
+import AuthGuard from "./components/AuthGuard";
 
 function App() {
   const location = useLocation();
@@ -24,11 +27,26 @@ function App() {
           <Route path="/counter" element={<Counter />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
+
           <Route path="/dashboard/*" element={<Dashboard />} />
           <Route
             path="/lot-payment-history/:lotId"
-            element={<LotPaymentHistory />}
+            element={
+              <AuthGuard>
+                <LotPaymentHistory />
+              </AuthGuard>
+            }
           />
+          <Route
+            path="/members/:memberId/profile"
+            element={
+              <AuthGuard>
+                <MemberProfile />
+              </AuthGuard>
+            }
+          />
+          <Route path="/yourlost" element={<YourLost />} />
+          <Route path="*" element={<YourLost />} />
         </Routes>
       </div>
     </div>

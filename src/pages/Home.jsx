@@ -6,6 +6,7 @@ function Home() {
     <>
       {/* Navigation */}
       <Navigation />
+
       <div className="min-h-screen relative pt-20">
         {/* Main glassmorphism panel */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
